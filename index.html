@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Cuenta - EduPlay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .app-name {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .developer {
+            color: #888;
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #a78bfa;
+        }
+
+        p {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .warning-box h3 {
+            color: #fca5a5;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .steps {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps li {
+            counter-increment: step;
+            padding: 15px 0 15px 60px;
+            position: relative;
+            border-left: 2px solid rgba(167, 139, 250, 0.3);
+            margin-left: 20px;
+        }
+
+        .steps li:last-child {
+            border-left: 2px solid transparent;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: -22px;
+            top: 12px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .steps li strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .steps li span {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .data-item {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .data-item.retained {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .data-item .icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .data-item .label {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .contact-section a {
+            color: #a78bfa;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        .email-template {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #aaa;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .email-template strong {
+            color: #a78bfa;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #888;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #a78bfa;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .card {
+                padding: 25px 20px;
+            }
+
+            .steps li {
+                padding-left: 50px;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">📚</div>
+            <div class="app-name">EduPlay</div>
+            <div class="developer">por Infinity Stack</div>
+        </header>
+
+        <div class="card">
+            <h1>🗑️ Solicitud de Eliminación de Cuenta</h1>
+            <p>Si deseas eliminar tu cuenta de EduPlay y todos los datos asociados, sigue los pasos que se indican a
+                continuación. Procesaremos tu solicitud en un plazo máximo de <strong>7 días hábiles</strong>.</p>
+
+            <div class="warning-box">
+                <h3>⚠️ Advertencia Importante</h3>
+                <p style="margin-bottom: 0;">La eliminación de cuenta es <strong>permanente e irreversible</strong>. Una
+                    vez procesada la solicitud, no podrás recuperar tu progreso, estadísticas ni ningún otro dato.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 Pasos para Eliminar tu Cuenta</h2>
+            <ol class="steps">
+                <li>
+                    <strong>Envía un correo electrónico</strong>
+                    <span>Escribe a <strong>infinitystack.dev@gmail.com</strong> desde el correo asociado a tu cuenta de
+                        EduPlay.</span>
+                </li>
+                <li>
+                    <strong>Usa el asunto indicado</strong>
+                    <span>El asunto del correo debe ser: <strong>"Solicitud de eliminación de cuenta -
+                            EduPlay"</strong></span>
+                </li>
+                <li>
+                    <strong>Incluye tu información</strong>
+                    <span>En el cuerpo del mensaje, incluye tu nombre de usuario o el correo electrónico registrado en
+                        la app.</span>
+                </li>
+                <li>
+                    <strong>Espera confirmación</strong>
+                    <span>Recibirás un correo de confirmación cuando tu cuenta y datos hayan sido eliminados (máximo 7
+                        días hábiles).</span>
+                </li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h2>🗂️ Datos que se Eliminarán</h2>
+            <p>Al eliminar tu cuenta, se borrarán permanentemente los siguientes datos:</p>
+
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="icon">👤</div>
+                    <div class="label">Perfil de usuario</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">📧</div>
+                    <div class="label">Correo electrónico</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">📊</div>
+                    <div class="label">Estadísticas</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">🏆</div>
+                    <div class="label">Puntuaciones</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">🔥</div>
+                    <div class="label">Rachas de estudio</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">🎮</div>
+                    <div class="label">Historial de juegos</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">📚</div>
+                    <div class="label">Materias guardadas</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">⚙️</div>
+                    <div class="label">Preferencias</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 25px; font-size: 0.9rem; color: #888;">
+                <strong>Nota:</strong> Los datos anónimos y agregados (como estadísticas generales de uso) pueden
+                conservarse con fines analíticos, pero no estarán vinculados a tu identidad.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>⏱️ Período de Retención</h2>
+            <p>Una vez recibida tu solicitud:</p>
+            <ul style="margin-left: 20px; color: #ccc;">
+                <li>Procesaremos la eliminación en un máximo de <strong>7 días hábiles</strong>.</li>
+                <li>Recibirás confirmación por correo electrónico.</li>
+                <li>Los datos serán eliminados permanentemente de nuestros servidores.</li>
+                <li>Las copias de seguridad se purgan automáticamente en un plazo de 30 días.</li>
+            </ul>
+        </div>
+
+        <div class="contact-section">
+            <h2 style="margin-bottom: 15px;">📧 Contacto</h2>
+            <p>Para solicitar la eliminación de tu cuenta, envía un correo a:</p>
+            <a
+                href="mailto:infinitystack.dev@gmail.com?subject=Solicitud%20de%20eliminación%20de%20cuenta%20-%20EduPlay">infinitystack.dev@gmail.com</a>
+
+            <div class="email-template">
+                <strong>Asunto:</strong> Solicitud de eliminación de cuenta - EduPlay<br><br>
+                <strong>Mensaje:</strong><br>
+                Hola,<br><br>
+                Solicito la eliminación de mi cuenta de EduPlay.<br><br>
+                Correo registrado: [tu correo]<br>
+                Nombre de usuario: [tu usuario]<br><br>
+                Gracias.
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2024 EduPlay by <a href="#">Infinity Stack</a>. Todos los derechos reservados.</p>
+            <p style="margin-top: 10px;">
+                <a href="privacy_policy.html">Política de Privacidad</a>
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>
